@@ -1,0 +1,33 @@
+{
+  "name": "iobroker.vis-gumbi",
+  "version": "0.0.1",
+  "description": "vis-gumbi",
+  "author": {
+    "name": "Alex",
+    "email": "a@a.de"
+  },
+  "homepage": "https://github.com/Alex/ioBroker.vis-gumbi",
+  "license": "Unlicense",
+  "keywords": [
+    "ioBroker",
+    "template",
+    "Smart Home",
+    "home automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alex/ioBroker.vis-gumbi"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/gulp": "^4.0.5",
+    "axios": "^0.18.0",
+    "gulp": "^4.0.0"
+  },
+  "main": "widgets/vis-gumbi.html",
+  "scripts": {},
+  "bugs": {
+    "url": "https://github.com/Alex/ioBroker.vis-gumbi/issues"
+  },
+  "readmeFilename": "README.md"
+}

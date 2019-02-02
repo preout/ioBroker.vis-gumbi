@@ -1,0 +1,79 @@
+{
+    "common": {
+        "name": "vis-gumbi",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "Gumbi Widgets",
+        "titleLang": {
+            "en": "Gumbi Widgets",
+            "de": "Gumbi-Widgets",
+            "ru": "Gumbi Widgets",
+            "pt": "Widgets Gumbi",
+            "nl": "Gumbi Widgets",
+            "fr": "Widgets Gumbi",
+            "it": "Widget Gumbi",
+            "es": "Gumbi Widgets",
+            "pl": "Widgety Gumbi",
+            "zh-cn": "Gumbi Widgets"
+        },
+        "desc": {
+            "en": "vis-gumbi",
+            "de": "Vis-Gumbi",
+            "ru": "Vis-Gumbi",
+            "pt": "vis-gumbi",
+            "nl": "vis-gumbi",
+            "fr": "vis-gumbi",
+            "it": "nei Gumbi",
+            "es": "vis-gumbi",
+            "pl": "vis-gumbi",
+            "zh-cn": "VIS-gumbi"
+        },
+        "authors": [
+            "Alex <a@a.de>"
+        ],
+        "keywords": [
+            "ioBroker",
+            "template",
+            "Smart Home",
+            "home automation"
+        ],
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "vis-gumbi.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/Alex/ioBroker.vis-gumbi/master/admin/vis-gumbi.png",
+        "readme": "https://github.com/Alex/ioBroker.vis-gumbi/blob/master/README.md",
+        "loglevel": "info",
+        "restartAdapters": [
+            "vis"
+        ],
+        "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+        "onlyWWW": true,
+        "noConfig": true,
+        "singleton": true,
+        "type": "visualization-widgets",
+        "mode": "once",
+        "dependencies": [
+            "vis"
+        ]
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": []
+}
