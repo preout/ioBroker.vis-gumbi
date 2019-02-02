@@ -16,6 +16,656 @@
 <!-- here you can include so many js-files as you want -->
 <script type="text/javascript" src="widgets/vis-gumbi/js/vis-gumbi.js"></script>
 
+
+<script type="text/javascript">
+
+    'use strict';
+    if (vis.editMode) {
+        // Add words for basic widgets
+        $.extend(true, systemDictionary, {
+
+            "select_current": {
+                "en": "Select current view",
+                "de": "Aktuelle View selektieren",
+                "ru": "Отметить текущую"
+            },
+            "label":            {"en": "Label",             "de": "Beschriftung",           "ru": "Надпись"},
+            "autoclose":        {"en": "Auto close",        "de": "Auto-zu",                "ru": "Автозакрытие"},
+            "label_prepend":    {"en": "Label prepend",     "de": "Vor Beschriftung",       "ru": "Перед надписью"},
+            "label_append":     {"en": "Label append",      "de": "Nach Beschriftung",      "ru": "После надписи"},
+            "badge_label":      {"en": "Badge text",        "de": "Abzeichentext",          "ru": "Текст в бирке"},
+            "dialog_url":       {"en": "Dialog URL",        "de": "Dialog URL",             "ru": "URL фрейма в диалоге"},
+            "dialog_scroll":    {"en": "Scroll in iFrame",  "de": "Scroll im iFrame",       "ru": "Скролл в диалоге"},
+            "icon":             {"en": "Icon URL",          "de": "Icon URL",               "ru": "URL иконки"},
+            "icon_src":         {"en": "Icon URL",          "de": "Icon URL",               "ru": "URL иконки"},
+            "icon_width":       {"en": "Icon width",        "de": "Iconbreite",             "ru": "Ширина иконки"},
+            "icon_height":      {"en": "Icon height",       "de": "Iconhöhe",               "ru": "Высота иконки"},
+            "icon_top":         {"en": "Icon left",         "de": "Icon-Offset von oben",   "ru": "Сдвиг иконки сверху"},
+            "icon_left":        {"en": "Icon top",          "de": "Icon-Offset von links",  "ru": "Сдвиг иконки слева"},
+            "icon_class":       {"en": "Icon class",        "de": "Ikonenklasse",           "ru": "Иконка"},
+            "icon_badge":       {"en": "Icon badge",        "de": "Abzeichenikone",         "ru": "Иконка бирки"},
+            "bg_class":         {"en": "Background",        "de": "Hintergrund",            "ru": "Фон"},
+            "bg_class_active":  {"en": "Background active", "de": "Aktiver Hintergrund",    "ru": "Акивный Фон"},
+            "badge_bg_class":   {"en": "Badge background",  "de": "Abzeichen- Hintergrund", "ru": "Фон бирки"},
+            "badge_bg_class_active": {
+                "en": "Badge background active",
+                "de": "Aktiver Abzeichen- Hintergrund",
+                "ru": "Фон активной бирки"
+            },
+            "brand_bg_class":   {"en": "Brand background", "de": "Brand- Hintergrund",      "ru": "Фон полоски"},
+            "brand_bg_class_active": {
+                "en": "Brand background active",
+                "de": "Aktiver Brand- Hintergrund",
+                "ru": "Фон активной полоски"
+            },
+            "badge_src":        {"en": "Badge URL",         "de": "Abzeichen URL",          "ru": "URL бирки"},
+            "badge_src_false":  {"en": "Badge URL",         "de": "Abzeichen URL",          "ru": "URL бирки"},
+            "badge_src_true":   {"en": "Badge URL by true", "de": "Aktiv-Abzeichen URL",    "ru": "URL активной URL"},
+            "badge_width":      {"en": "Badge width[%]",    "de": "Abzeichen-Breite[%]",    "ru": "Ширина бирки"},
+            "badge_height":     {"en": "Badge height[%]",   "de": "Abzeichen-Höhe[%]",      "ru": "Высота бирки"},
+            "badge_top":        {"en": "Badge top[%]",      "de": "Abzeichen-Top[%]",       "ru": "Отступ сверху для бирки"},
+            "badge_left":       {"en": "Badge left[%]",     "de": "Abzeichen-Links[%]",     "ru": "Отступ слева для бирки"},
+            "group_icon":       {"en": "Icon",              "de": "Icon",                  "ru": "Иконка"},
+            "group_badge":      {"en": "Badge",             "de": "Abzeichen",              "ru": "Бирка"},
+            "group_bg-and-text": {"en": "Background and label", "de": "Hintergrund und Titel", "ru": "Фон и надпись"},
+            "group_dialog":     {"en": "Dialog",            "de": "Dialog",                 "ru": "Диалог"},
+	        "group_brand":      {"en": "Brand",             "de": "Brand",                  "ru": "Brand"},
+            "transform":        {"en": "Transform",         "de": "Druckeffekt",            "ru": "Эффект нажатия"},
+            "hover":            {"en": "Hover effect",      "de": "Hover-Effekt",           "ru": "Реакция на курсор"},
+            "oid-working":      {"en": "Working state ID",  "de": "In Arbeit Zustand ID",   "ru": "'В работе' ID"},
+            "min":              {"en": "Min",               "de": "Min",                    "ru": "Минимум"},
+            "max":              {"en": "Max",               "de": "Max",                    "ru": "Максимум"},
+            "step":             {"en": "Step",              "de": "Schritt",                "ru": "Шаг"},
+            "sliderColor":      {"en": "Slider color",      "de": "Schieberfarbe",          "ru": "Цвет ползунка"},
+            "sliderCompleteColor": {
+                "en": "Slider complete color",
+                "de": "Voll Schieberfarbe",
+                "ru": "Цвет ползунка (Полный)"
+            },
+            "sliderMarkerColor": {"en": "Slider handle color", "de": "Schiebergrifffarbe",  "ru": "Цвет ручки"},
+            "content_oid":      {"en": "Content ID",        "de": "Inhalt ID",              "ru": "ID Содержания"},
+            "dialog_oid":       {"en": "Dialog ID",         "de": "Dialog ID",              "ru": "ID Текста для диалога"},
+            "number_oid":       {"en": "Number ID",         "de": "Nummer ID",              "ru": "ID Числа"},
+            "hide_on_0":        {"en": "Hide by 0",         "de": "Verbergen bei 0",        "ru": "Скрыть при 0"},
+            "dialog_fontSize":  {"en": "Dialog font size",  "de": "Dialogschriftgrösse",    "ru": "Размер шрифта"},
+            "dialog_padding":   {"en": "Dialog padding",    "de": "Dialog padding",         "ru": "Отступ"},
+            "dialog_textAlign": {"en": "Dialog text align", "de": "Dialogtextausrichtung",  "ru": "Выравнивание текста"},
+            "dialog_width":     {"en": "Dialog width",      "de": "Dialogbreite",           "ru": "Ширина"},
+            "dialog_height":    {"en": "Dialog height",     "de": "Dialoghöhe",             "ru": "Высота"},
+            "dialog_title":     {"en": "Title",             "de": "Titel",                  "ru": "Надпись"},
+            "dialog_flat":      {"en": "Flat Design",       "de": "Flaches Design",         "ru": "Плоский дизайн"},
+            "dialog_shadow":    {"en": "Shadow",            "de": "Fensterschatten",        "ru": "Показать тень"},
+            "dialog_draggable": {"en": "Draggable",         "de": "Konnte verschoben werden", "ru": "Можно двигать"},
+            "dialog_modal":     {"en": "Modal",             "de": "Modaldialog",            "ru": "Модальное окно"},
+            "dialog_icon_src":  {"en": "Icon URL",          "de": "Ikone URL",              "ru": "URL иконки"},
+            "dialog_icon_class": {"en": "Icon class",       "de": "Ikoneklasse",            "ru": "Класс иконки"},
+            "Select ID":        {"en": "Select ID",         "de": "Select ID",              "ru": "Select ID"},
+            "state_oid":        {"en": "State ID",          "de": "Zustand ID",             "ru": "ID Статуса"},
+            "select_on_true":   {"en": "Select by true",    "de": "Selektieren bei Wahr",   "ru": "Отметить при 1"},
+            "label_true":       {"en": "Label if true",     "de": "Schild bei Wahr",        "ru": "Надпись при 1"},
+            "label_false":      {"en": "Label if false",    "de": "Schild bei Falsch",      "ru": "Надпись при 0"},
+            "bg_class_true":    {"en": "Background by true", "de": "Hintergrund bei Wahr",  "ru": "Фон при 1"},
+            "bg_class_false":   {"en": "Background by false", "de": "Hintergrund bei Falsch", "ru": "Фон при 0"},
+            "icon_true_src":    {"en": "Icon URL by true",  "de": "Ikone URL bei Wahr",     "ru": "URL иконки при 1"},
+            "icon_false_src":   {"en": "Icon URL by false", "de": "Ikone URL bei Falsch",   "ru": "URL иконки при 0"},
+            "icon_true_src_tooltip": {
+                "en": "To center the image select 'icon-custom' class",
+                "de": "Um das Bild zu zentrieren, muss 'icon-custom' Klasse gewählt werden",
+                "ru": "Для помещения картинки в центре выберите 'icon-custom' класс"
+            },
+            "icon_false_src_tooltip": {
+                "en": "To center the image select 'icon-custom' class",
+                "de": "Um das Bild zu zentrieren, muss 'icon-custom' Klasse gewählt werden",
+                "ru": "Для помещения картинки в центре выберите 'icon-custom' класс"
+            },
+            "icon_class_true": {
+                "en": "Icon class by true",
+                "de": "Ikonenklasse URL bei Wahr",
+                "ru": "Класс иконки при 1"
+            },
+            "icon_class_false": {
+                "en": "Icon class by false",
+                "de": "Ikonenklasse URL bei Falsch",
+                "ru": "Класс иконки при 0"
+            },
+            "badge_bg_class_true": {
+                "en": "Badge background by true",
+                "de": "Abzeichen- Hintergrund bei Wahr",
+                "ru": "Фон бирки при 1"
+            },
+            "badge_bg_class_false": {
+                "en": "Badge background by false",
+                "de": "Abzeichen- Hintergrund bei Falsch",
+                "ru": "Фон бирки при 0"
+            },
+            "brand_bg_class_true": {
+                "en": "Brand background by true",
+                "de": "Brand- Hintergrund bei Wahr",
+                "ru": "Фон полоски при 1"
+            },
+            "brand_bg_class_false": {
+                "en": "Brand background by false",
+                "de": "Brand- Hintergrund bei Falsch",
+                "ru": "Фон полоски при 0"
+            },
+            "icon_true":        {"en": "Icon by true",      "de": "Ikone bei Wahr",         "ru": "Иконка при 1"},
+            "icon_false":       {"en": "Icon by false",     "de": "Ikone bei Falsch",       "ru": "Иконка при 0"},
+            "icon_badge_true":  {"en": "Badge icon by true", "de": "Abzeichenikone bei Wahr", "ru": "Иконка бирки при 1"},
+            "icon_badge_false": {
+                "en": "Badge icon by false",
+                "de": "Abzeichenikone bei Falsch",
+                "ru": "Иконка бирки при 0"
+            },
+            "value":            {"en": "Value",             "de": "Wert",                   "ru": "Значение"},
+            "select_on_value":  {"en": "Select on value",   "de": "Selektieren by Wert",    "ru": "Отметить при значении"},
+            "group_slider":     {"en": "Slider",            "de": "Schieber",               "ru": "Ползунок"},
+            "content_prepend":  {"en": "Сontent prepend",   "de": "Inhaltprefix",           "ru": "Префикс содержания"},
+            "content_append":   {"en": "Сontent append",    "de": "Inhaltsuffix",           "ru": "Суффику содержания"},
+            "label_id":         {"en": "Label ObjectID",    "de": "Beschriftung ObjectID",  "ru": "ObjectID надписи"},
+            "hum_oid":          {"en": "Humidity ID",       "de": "Luftfeutigkeit ID",      "ru": "ID влажности"},
+            "label_humidity":   {"en": "Label for humidity", "de": "Beschriftung Luftfeutigkeit", "ru": "Подпись влажности"},
+            "lowbat_oid":       {"en": "Low battery ID",    "de": "Low battery ID",         "ru": "ID низкого заряда батареи"},
+            "controlmode_oid":  {"en": "Control mode ID",   "de": "Kontrollmodus ID",       "ru": "ID Режима управления"},
+            "windowopen_oid":   {"en": "Window open ID",    "de": "Fenstersensor ID",       "ru": "Сенсор окна ID"}
+        });
+    }
+
+    $.extend(true, systemDictionary, {
+        "Set temperature":      {"en": "Set temperature",   "de": "Soll-Temperatur",    "ru": "Выставленная темп."},
+        "Actual temp.":         {"en": "Actual temp.",      "de": "Ist-Temperatur",     "ru": "Актуальная темп."},
+        "Valve position":       {"en": "Valve position",    "de": "Ventilstellung",     "ru": "Позиция вентиля"},
+        "Humidity":             {"en": "Humidity",          "de": "Luftfeuchtigkeit",   "ru": "Влажность"},
+        "Target":               {"en": "Target",            "de": "Soll",               "ru": "Должно"},
+        "Actual":               {"en": "Now",               "de": "Ist",                "ru": "Сейчас"},
+        "group_service":        {"en": "Service",           "de": "Service",            "ru": "Сервис"},
+        "icon_lowbat":          {"en": "Icon low battery",  "de": "Icon Batterie leer", "ru": "Иконка низкого заряда батареи"},
+        "icon_control_mode_0":  {"en": "Icon auto mode",    "de": "Icon Auto Modus",    "ru": "Иконка для авто-режима"},
+        "icon_control_mode_1":  {"en": "Icon manual mode",  "de": "Icon man. Modus",    "ru": "Иконка для ручного режима"},
+        "icon_control_mode_2":  {"en": "Icon party mode",   "de": "Icon Party Modus",   "ru": "Иконка для режима вечеринки"},
+        "icon_control_mode_3":  {"en": "Icon boost mode",   "de": "Icon Boost Modus",   "ru": "Иконка для режима наддува"},
+        "icon_windowopen":      {"en": "Icon window open",  "de": "Icon Fenster offen", "ru": "Иконка открытого окна"}
+    });
+
+    vis.navChangeCallbacks.push(function (view) {
+        $('.vis-metro-nav').each(function () {
+            var $this = $(this);
+            if ($this.attr('data-metro-nav') === view) {
+                if ($this.attr('data-metro-nav-select') === 'true') {
+                    $this.addClass("selected");
+                }
+                $this.addClass($this.attr('data-metro-class-active'));
+                if ($this.attr('data-metro-class-active') !== $this.attr('data-metro-class')) {
+                    $this.removeClass($this.attr('data-metro-class'));
+                }
+            } else {
+                $this.addClass($this.attr('data-metro-class'));
+                if ($this.attr('data-metro-class-active') !== $this.attr('data-metro-class')) {
+                    $this.removeClass($this.attr('data-metro-class-active'));
+                }
+                $this.removeClass('selected');
+            }
+        });
+    });
+
+    vis.binds.metro = {
+        version: "1.1.2",
+        format: function (value, type, mustValue) {
+            if (!type || type === 'bool') {
+
+                return '_' + !(!value || value === 'false' || value === '0');
+
+            } else if (type == 10) {
+
+                if (!value || value === 'false' || value === '0') value = 0;
+                if (value === 'true' || value === true) value = 1;
+                return parseInt(value, 10);
+
+            } else if (type === 'compare') {
+
+                if (!value || value === 'false' || value === '0') value = 0;
+                if (value === 'true' || value === true) value = 1;
+
+                if (mustValue === 'true'  || mustValue === '1')  mustValue = 1;
+                if (mustValue === 'false' || mustValue === '0') mustValue = 0;
+
+                return '_' + (value == mustValue);
+            } else if (type === '%') {
+                if (value !== undefined && (typeof value === 'number' || typeof value === 'string')) value = parseFloat(value).toFixed(0) + '%';
+                if (value === undefined) value = '';
+                return value;
+            }  else if (type === '°') {
+                if (value !== undefined && (typeof value === 'number' || typeof value === 'string')) value = parseFloat(value).toFixed(1) + '°C';
+                if (value === undefined) value = '';
+                return value;
+            }
+            return value;
+        },
+        inputControl: function (el) {
+            var $this = $(el).parent().find('input');
+        },
+        slider: function (el, options) {
+            var $this = $(el).parent().find('.slider');
+            var oid     = $this.attr('data-oid');
+            var wid     = $this.attr('data-oid-working');
+
+            if (!oid && options.hideIfNoOid) {
+                $this.hide();
+                return;
+            }
+
+            var min = (options.min === undefined || options.min === null || options.min === '') ? 0.00 : parseFloat(options.min);
+            var max = (options.max === undefined || options.min === null || options.max === '') ? 1.00 : parseFloat(options.max);
+
+            if (max < min) {
+                var tmp = max;
+                max = min;
+                min = tmp;
+            }
+            var val = vis.states.attr(oid + '.val');
+            if (val === true  || val === 'true')  val = max;
+            if (val === false || val === 'false') val = min;
+            val = parseFloat(val);
+            if (isNaN(val)) val = min;
+
+            if (val < min) val = min;
+            if (val > max) val = max;
+
+            options.min = min;
+            options.max = max;
+            options.simRange = 100;
+            options.range    = options.max - options.min;
+            options.factor   = options.simRange / options.range;
+            val = Math.floor((val - options.min) * options.factor);
+
+            $this.metroSlider({
+                min:           0,
+                max:           options.simRange,
+                accuracy:      options.accuracy      || 0,
+                color:         options.color         || undefined,
+                completeColor: options.completeColor || undefined,
+                markerColor:   options.markerColor   || undefined,
+                position:      val,
+                animate:       true,
+                change:        function (val) {
+                    val = (parseFloat(val) / options.factor) + options.min;
+                    if (options.step) {
+                        val = Math.round(val / options.step) * options.step;
+                    }
+                    if (options.digits !== undefined && options.digits !== null && options.digits !== '') {
+                        vis.setValue(oid, val.toFixed(options.digits));
+                        //vis.setValue(oid, parseFloat(val).toFixed(options.digits));
+                    } else {
+                        vis.setValue(oid, val);
+                        //vis.setValue(oid, parseFloat(val));
+                    }
+                },
+                changed:       function (val) {
+
+                }
+            });
+
+            vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+                var val = vis.states.attr(oid + '.val');
+
+                if (val === true  || val === 'true')  val = options.max;
+                if (val === false || val === 'false') val = options.min;
+
+                val = parseFloat(val);
+                if (isNaN(val)) val = options.min;
+                if (val < options.min) val = options.min;
+                if (val > options.max) val = options.max;
+                val = Math.floor((val - options.min) * options.factor);
+
+                try {
+                    $this.metroSlider('value', val);
+                } catch (e) {
+                    console.error(e);
+                }
+            });
+        },
+        tile: function (el, transform) {
+            var $this = $(el).parent().find('.tile');
+            if (transform) $this.tileTransform();
+
+            setTimeout(function () {
+                $('.vis-metro-nav').each(function () {
+                    var $this = $(this);
+                    if ($this.attr('data-metro-nav') === vis.activeView) {
+                        if ($this.attr('data-metro-nav-select') === 'true') {
+                            $this.addClass('selected');
+                        }
+                        $this.addClass($this.attr('data-metro-class-active'));
+                        if ($this.attr('data-metro-class-active') !== $this.attr('data-metro-class')) {
+                            $this.removeClass($this.attr('data-metro-class'));
+                        }
+                    } else {
+                        $this.addClass($this.attr('data-metro-class'));
+                        if ($this.attr('data-metro-class-active') !== $this.attr('data-metro-class')) {
+                            $this.removeClass($this.attr('data-metro-class-active'));
+                        }
+                        $this.removeClass('selected');
+                    }
+                });
+            }, 100);
+        },
+        tileDialog: function (el, wid, view, options, html, isIframe) {
+            var $this = $(el).parent().find('.tile');
+
+            var width  = parseInt(options.width, 10);
+            var height = parseInt(options.height, 10);
+
+            if (isNaN(width))  width = undefined;
+            if (isNaN(height)) height = undefined;
+
+            if (view || html || vis.editMode) {
+                $(el).parent().on('click touchstart', function () {
+                    // Protect against two events
+                    if (vis.detectBounce(this)) return;
+
+                    $.metroDialog({
+                        width:     width,
+                        height:    height,
+                        overlay:   options.overlay   || false,
+                        shadow:    options.shadow    || false,
+                        flat:      options.flat      || false,
+                        draggable: options.draggable || false,
+                        title:     options.title     || '',
+                        icon:      options.icon  ? '<img src="' + options.icon + '">' : (options.icon_class ? '<span class="' + options.icon_class + '"></span>' : false),
+                        content:   '',
+                        onShow:    function(_dialog){
+                            var content = _dialog.children('.content');
+                            if (html) {
+                                if (isIframe) {
+                                    content.css('overflow', 'hidden');
+                                    content.html('<iframe src="' + html + '" style="width: 100%; height: 100%" scrolling="' + (options.scroll ? 'yes' : 'no') + '"></iframe>');
+                                } else {
+                                    content.html(html);
+                                }
+                            } else {
+                                content.html('<div class="vis-view-container" data-vis-contains="' + view + '"></div>');
+                                if (vis.views[view]) {
+                                    vis.renderView(view, view, false, function (_view) {
+                                        $('#visview_' + _view).appendTo(content).show();
+                                    });
+                                }
+                                $('#visview_' + view).appendTo(content);
+                                $('#visview_' + view).show();
+                            }
+                        }
+                    });
+                });
+            }
+        },
+        tileDialogString: function (el, wid, content_oid, options, fontSize, padding, textAlign) {
+            content_oid = content_oid || '';
+            var $this = $(el).parent().find('.tile');
+
+            var width = parseInt(options.width, 10);
+            var height = parseInt(options.height, 10);
+
+            if (isNaN(width))  width = undefined;
+            if (isNaN(height)) height = undefined;
+
+            $(el).parent().on('click touchstart', function () {
+                // Protect against two events
+                if (vis.detectBounce(this)) return;
+
+                $.metroDialog({
+                    width:     width,
+                    height:    height,
+                    overlay:   options.overlay || false,
+                    shadow:    options.shadow || false,
+                    flat:      options.flat || false,
+                    draggable: options.draggable || false,
+                    icon:      options.icon  ? '<img src="' + options.icon + '">' : (options.icon_class ? '<span class="' + options.icon_class + '"></span>' : false),
+                    title:     options.title || '',
+                    content:   '',
+                    onShow:    function(_dialog){
+                        var content = _dialog.children('.content');
+                        var style = '';
+                        if (fontSize)  style += 'font-size:'  + fontSize + ';';
+                        if (padding)   style += 'padding:'    + padding + ';';
+                        if (textAlign) style += 'text-align:' + textAlign + ';';
+
+                        var value = vis.states.attr(content_oid + '.val');
+                        if (value === undefined) value = '';
+                        content.html('<div style="' + style + '" class="metro-dialog-string" data-oid="' + content_oid + '">' + value + '</div>');
+                    }
+                });
+            });
+            vis.states.bind(content_oid + '.val', function (e, newVal, oldVal) {
+                $('div.metro-dialog-string[data-oid="' + content_oid + '"]').html(newVal);
+            });
+        },
+        tileDialogSlider: function (el, wid, level_id, working_id, options, sliderOptions) {
+            var $this = $(el).parent().find('.tile');
+
+            var width  = parseInt(options.width, 10);
+            var height = parseInt(options.height, 10);
+
+            if (isNaN(width))  width  = undefined;
+            if (isNaN(height)) height = undefined;
+
+            level_id   = level_id   || '';
+            working_id = working_id || '';
+
+            sliderOptions.min = (sliderOptions.min === undefined || sliderOptions.min === null || sliderOptions.min === '') ? 0.00 : parseFloat(sliderOptions.min);
+            sliderOptions.max = (sliderOptions.max === undefined || sliderOptions.min === null || sliderOptions.max === '') ? 1.00 : parseFloat(sliderOptions.max);
+
+            var range =  sliderOptions.max - sliderOptions.min;
+            var factor = 100 / range;
+
+            $(el).parent().on('click touchstart', function () {
+                // Protect against two events
+                if (vis.detectBounce(this)) return;
+
+                $.metroDialog({
+                    width:     width,
+                    height:    height,
+                    overlay:   options.overlay   || false,
+                    shadow:    options.shadow    || false,
+                    flat:      options.flat      || false,
+                    draggable: options.draggable || false,
+                    icon:      options.icon  ? '<img src="' + options.icon + '">' : (options.icon_class ? '<span class="' + options.icon_class + '"></span>' : false),
+                    title:     options.title     || '',
+                    content:   '',
+                    onShow:    function(_dialog){
+                        var content = _dialog.children('.content');
+                        var html = '<div style="margin: 24px 0 0 24px;">';
+                        html += '<div class="input-control switch"><label>';
+                        html += '<input type="checkbox" name="' + wid + '_checkbox" id="' + wid + '_checkbox" data-oid="' + level_id + '" data-oid-working="' + working_id + '"/>';
+                        html += '<span class="check"></span>';
+                        html += '</label></div>';
+                        html += '</div><div style="margin: 24px 12px 0 12px;">';
+                        html += '<div data-oid="' + level_id + '" data-oid-working="' + working_id + '" id="metroSlider_' + wid + '" class="slider" data-role="slider"></div>';
+                        html += '</div>';
+                        content.html(html);
+
+                        var val = vis.states.attr(level_id + '.val');
+                        if (val === true || val === 'true') val = sliderOptions.max;
+                        val = parseFloat(val);
+                        if (isNaN(val)) val = sliderOptions.min;
+
+                        val = Math.floor((val - sliderOptions.min) * factor);
+                        sliderOptions.position = val;
+
+                        vis.binds.metro.slider(document.getElementById('metroSlider_' + wid), sliderOptions);
+                        vis.binds.basic.checkbox(document.getElementById(wid + '_checkbox'), true, sliderOptions.min, sliderOptions.max);
+                    }
+                });
+            });
+        },
+        tileDialogHeating: function (el, wid, set_oid, temp_oid, drive_oid, options, sliderOptions) {
+            var $this = $(el).parent().find('.tile');
+
+            var width =  parseInt(options.width, 10);
+            var height = parseInt(options.height, 10);
+
+            if (isNaN(width))  width = undefined;
+            if (isNaN(height)) height = undefined;
+
+            set_oid   = set_oid   || '';
+            temp_oid  = temp_oid  || '';
+            drive_oid = drive_oid || '';
+
+            $(el).parent().on('click touchstart', function () {
+                // Protect against two events
+                if (vis.detectBounce(this)) return;
+
+                $.metroDialog({
+                    width:     width,
+                    height:    height,
+                    overlay:   options.overlay || false,
+                    shadow:    options.shadow || false,
+                    flat:      options.flat || false,
+                    draggable: options.draggable || false,
+                    icon:      options.icon  ? '<img src="' + options.icon + '">' : (options.icon_class ? '<span class="' + options.icon_class + '"></span>' : false),
+                    title:     options.title || '',
+                    content:   '',
+                    onShow:    function(_dialog){
+                        var val_set_id = vis.states.attr(set_oid + '.val');
+                        if (val_set_id === undefined || val_set_id === null || val_set_id === '') {
+                            val_set_id = '';
+                        } else {
+                            val_set_id = val_set_id.toFixed(1);
+                        }
+
+                        var val_temp_id = vis.states.attr(temp_oid + '.val');
+                        if (val_temp_id === undefined || val_temp_id === null || val_temp_id === '') {
+                            val_temp_id = '';
+                        } else {
+                            val_temp_id = val_temp_id.toFixed(1);
+                        }
+
+                        var val_drive_id = vis.states.attr(drive_oid + '.val');
+                        if (val_drive_id === undefined || val_drive_id === null || val_drive_id === '') {
+                            val_drive_id = '';
+                        } else {
+                            val_drive_id = val_drive_id.toFixed(0);
+                        }
+
+                        var content = _dialog.children('.content');
+                        var html = '<div style="margin: 24px 12px 0 12px;">';
+                        if (set_oid) {
+                            html += '<div data-oid="' + set_oid + '" id="metroSlider_' + wid + '" class="slider" data-role="slider"></div>';
+                        }
+                        html += '</div>';
+                        html += '<table style="margin-top: 12px; margin-left: 12px; font-size:14px;display:inline-block;">' +
+                                (set_oid   ? ('<tr><td>' + (options.label_set   || ('Set temperature')) + ':</td><td><span class="metro-dialog-string" data-oid="' + set_oid   + '">' + val_set_id   + '</span>°C</td></tr>') : '') +
+                                (temp_oid  ? ('<tr><td>' + (options.label_temp  || _('Actual temp.'))   + ':</td><td><span class="metro-dialog-string" data-oid="' + temp_oid  + '">' + val_temp_id  + '</span>°C</td></tr>') : '') +
+                                (drive_oid ? ('<tr><td>' + (options.label_drive || _('Valve position')) + ':</td><td><span class="metro-dialog-string" data-oid="' + drive_oid + '">' + val_drive_id + '</span>%</td></tr>')  : '') +
+                                '</table>';
+
+                        content.html(html);
+                        sliderOptions.min = sliderOptions.min === undefined ? 6  : parseFloat(sliderOptions.min);
+                        sliderOptions.max = sliderOptions.max === undefined ? 30 : parseFloat(sliderOptions.max);
+                        if (set_oid) {
+                            vis.binds.metro.slider(document.getElementById('metroSlider_' + wid), sliderOptions);
+                            vis.states.bind(set_oid   + '.val', function (e, newVal, oldVal) {
+                                $('span.metro-dialog-string[data-oid="' + set_oid + '"]').html(parseFloat(newVal).toFixed(1));
+                            });
+                        }
+                        if (temp_oid) {
+                            vis.states.bind(temp_oid  + '.val', function (e, newVal, oldVal) {
+                                $('span.metro-dialog-string[data-oid="' + temp_oid + '"]').html(parseFloat(newVal).toFixed(1));
+                            });
+                        }
+                        if (drive_oid) {
+                            vis.states.bind(drive_oid + '.val', function (e, newVal, oldVal) {
+                                $('span.metro-dialog-string[data-oid="' + drive_oid + '"]').html(parseFloat(newVal).toFixed(0));
+                            });
+                        }
+                    }
+                });
+            });
+        },
+        onHeatingOid: function (widgetID, view, value, attr, isCss) {
+            var obj = vis.objects[value];
+            var changed = [];
+            // If it is real object and SETPOINT
+            if (obj && obj.common && obj.common.role === 'level.temperature') {
+                var roles = [];
+                // If some attributes are not set
+                if (!vis.views[view].widgets[widgetID].data.temp_oid) {
+                    roles.push('value.temperature');
+                }
+                if (!vis.views[view].widgets[widgetID].data.drive_oid) {
+                    roles.push('value.valve');
+                }
+                if (!vis.views[view].widgets[widgetID].data.hum_oid) {
+                    roles.push('value.humidity');
+                }
+                if (!vis.views[view].widgets[widgetID].data.lowbat_oid) {
+                    roles.push('indicator.battery');
+                }
+                if (roles.length) {
+                    var result = vis.findByRoles(value, roles);
+                    if (result) {
+                        for (var r in result) {
+                            switch (r) {
+                                case 'value.temperature':
+                                    changed.push('temp_oid'); // remember attr to update it
+                                    vis.views[view].widgets[widgetID].data.temp_oid = result[r];
+                                    vis.widgets[widgetID].data.temp_oid = result[r];
+                                    break;
+
+                                case 'value.valve':
+                                    changed.push('drive_oid'); // remember attr to update it
+                                    vis.views[view].widgets[widgetID].data.drive_oid = result[r];
+                                    vis.widgets[widgetID].data.drive_oid = result[r];
+                                    break;
+
+                                case  'value.humidity':
+                                    changed.push('hum_oid');
+                                    vis.views[view].widgets[widgetID].data.hum_oid = result[r];
+                                    vis.widgets[widgetID].data.hum_oid = result[r];
+                                    break;
+
+                                case  'indicator.battery':
+                                    changed.push('lowbat_oid');
+                                    vis.views[view].widgets[widgetID].data.lowbat_oid = result[r];
+                                    vis.widgets[widgetID].data.lowbat_oid = result[r];
+                                    break
+                            }
+                        }
+                    }
+                }
+
+                if (!vis.views[view].widgets[widgetID].data.controlmode_oid) {
+                    var result = vis.findByName(value, 'CONTROL_MODE');
+                    if (result) {
+                        changed.push('controlmode_oid');
+                        vis.views[view].widgets[widgetID].data.controlmode_oid = result;
+                        vis.widgets[widgetID].data.controlmode_oid = result;
+                    }
+                }
+                if (!vis.views[view].widgets[widgetID].data.windowopen_oid) {
+                    var result = vis.findByName(value, 'WINDOW_STATE');
+                    if (result) {
+                       changed.push('windowopen_oid');
+                        vis.views[view].widgets[widgetID].data.windowopen_oid = result;
+                        vis.widgets[widgetID].data.windowopen_oid = result;
+                    }
+                }
+                if (!vis.views[view].widgets[widgetID].data.windowopen_oid) {
+                    var result = vis.findByName(value, 'WINDOW_OPEN_REPORTING');
+                    if (result) {
+                        changed.push('windowopen_oid');
+                        vis.views[view].widgets[widgetID].data.windowopen_oid = result;
+                        vis.widgets[widgetID].data.windowopen_oid = result;
+                    }
+                }
+            }
+
+            return changed.length ? changed : null;
+        }
+    };
+
+	console.log('Metro version: "' + vis.binds.metro.version + '"');
+</script>
+
+
+
 <script id="tplVis-gumbiCalenderTwo"
         type="text/ejs"
         class="vis-tpl"
