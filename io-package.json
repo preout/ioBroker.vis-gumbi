@@ -51,7 +51,6 @@
             "home automation"
         ],
         "platform": "Javascript/Node.js",
-        "main": "main.js",
         "icon": "vis-gumbi.png",
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/Alex/ioBroker.vis-gumbi/master/admin/vis-gumbi.png",
@@ -71,8 +70,10 @@
         ]
     },
     "native": {
-        "option1": true,
-        "option2": "42"
+        "dependencies": [
+            "jqui-mfd",
+            "basic"
+        ]
     },
     "objects": [],
     "instanceObjects": []
